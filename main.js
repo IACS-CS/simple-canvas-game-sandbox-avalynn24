@@ -4,16 +4,17 @@ import { GameInterface } from 'simple-canvas-library';
 
 let gi = new GameInterface();
 
-
+let Sx = 100
+let Sy = 80
 
 gi.addDrawing(
-  function ({ ctx, width, height, elapsed }) {
+  function ({ ctx, width, height, stepTime }) {
     // Pen settings...
+    ctx.beginPath();
 ctx.strokeStyle = "rgb(50,160,190)";
 ctx.lineWidth = 4;
 
-let Sx = 100
-let Sy = 80
+
 
 
 
@@ -66,11 +67,15 @@ ctx.moveTo(Sx, Sy+150);
 ctx.lineTo(Sx+50, Sy+110);
 ctx.stroke();
 
-
+//bounce from side to side off the edge of the screen
+if (Sx + 200 >= width){
+  Sx += stepTime/1000 * -200;
+  } else {
+   Sx += stepTime/1000 * 200;
   }
-)
-
-
+  
+  });
+  
 gi.run();
 
 
