@@ -980,16 +980,17 @@ class T extends p {
 
 let gi = new T();
 
-
+let Sx = 100;
+let Sy = 80;
 
 gi.addDrawing(
-  function ({ ctx, width, height, elapsed }) {
+  function ({ ctx, width, height, stepTime }) {
     // Pen settings...
+    ctx.beginPath();
 ctx.strokeStyle = "rgb(50,160,190)";
 ctx.lineWidth = 4;
 
-let Sx = 100;
-let Sy = 80;
+
 
 
 
@@ -1042,10 +1043,14 @@ ctx.moveTo(Sx, Sy+150);
 ctx.lineTo(Sx+50, Sy+110);
 ctx.stroke();
 
-
+//bounce from side to side off the edge of the screen
+if (Sx + 200 >= width){
+  Sx += stepTime/1000 * -200;
+  } else {
+   Sx += stepTime/1000 * 200;
   }
-);
-
-
+  
+  });
+  
 gi.run();
-//# sourceMappingURL=index-96435214.js.map
+//# sourceMappingURL=index-61523d70.js.map
